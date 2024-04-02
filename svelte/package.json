@@ -1,5 +1,5 @@
 {
-    "main": "svelte-chatbot",
+    "main": "hello-world-svelte",
     "scripts": {
         "build": "node buildscript.js",
         "serve": "./node_modules/.bin/http-server ./dist"
