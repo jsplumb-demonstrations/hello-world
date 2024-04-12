@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+
+        <script src="node_modules/angular/angular.js"></script>
+        <script src="node_modules/@jsplumbtoolkit/browser-ui/js/jsplumbtoolkit.browser-ui.umd.js"></script>
+        <script src="jsplumbtoolkit-angular-1.x.js"></script>
+
+        <link rel="stylesheet" href="node_modules/@jsplumbtoolkit/browser-ui/css/jsplumbtoolkit.css">
+        <link rel="stylesheet" href="app.css">
+    </head>
+    <body>
+
+
+        <div id="container" ng-controller="HelloWorldController as HelloWorldController" ng-app="app">
+
+            <script type="text/ng-template" id="hello_template.tpl">
+                {{node.label}}
+            </script>
+
+            <script type="text/ng-template" id="world_template.tpl">
+                {{node.label}}
+            </script>
+
+            <jsplumb-toolkit init="HelloWorldController.init"
+                             render-params="HelloWorldController.renderParams"
+                             jtk-id="helloWorldToolkit"
+                             surface-id="helloWorldSurface">
+
+                <jsplumb-miniview surface-id="helloWorldSurface" class="miniview"></jsplumb-miniview>
+
+            </jsplumb-toolkit>
+        </div>
+
+        <script src="app.js"></script>
+
+    </body>
+
+</html>
