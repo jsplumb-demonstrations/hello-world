@@ -202,6 +202,18 @@
                                 scope.surface.bind(jsPlumbToolkit.EVENT_NODE_ADDED, vertexAdded);
                                 scope.surface.bind(jsPlumbToolkit.EVENT_GROUP_ADDED, vertexAdded);
 
+                                scope.toolkit.bind(jsPlumbToolkit.EVENT_PORT_ADDED, (p) => {
+                                    $timeout(function() { scope.$apply(); });
+                                });
+
+                                scope.toolkit.bind(jsPlumbToolkit.EVENT_PORT_UPDATED, (p) => {
+                                    $timeout(function() { scope.$apply(); });
+                                });
+
+                                scope.toolkit.bind(jsPlumbToolkit.EVENT_PORT_REMOVED, (p) => {
+                                    $timeout(function() { scope.$apply(); });
+                                });
+
                                 // bind to nodeUpdated/groupUpdated events and apply the scope, to get changes
                                 // through to the view layer.
                                 scope.toolkit.bind(jsPlumbToolkit.EVENT_NODE_UPDATED, function() {
@@ -591,7 +603,7 @@
                         const surface = jsPlumbService.getSurface(attrs.surfaceId);
                         if (surface) {
 
-                            $scope.droppablesHandler = new SurfaceDropManager({
+                            $scope.droppablesHandler = new jsPlumbToolkit.SurfaceDropManager({
                                 source:element[0],
                                 selector:attrs.selector,
                                 surface:surface,
