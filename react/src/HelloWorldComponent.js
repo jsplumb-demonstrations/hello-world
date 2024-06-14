@@ -6,11 +6,12 @@ import {
     BlankEndpoint,
     ArrowOverlay,
     AbsoluteLayout,
-    EVENT_CANVAS_CLICK
+    EVENT_CANVAS_CLICK,
+    newInstance
 } from "@jsplumbtoolkit/browser-ui"
 
 import {
-    SurfaceComponent, MiniviewComponent
+    JsPlumbToolkitSurfaceComponent, JsPlumbToolkitMiniviewComponent
 } from "@jsplumbtoolkit/browser-ui-react";
 
 
@@ -20,10 +21,12 @@ import WorldComponent from './WorldComponent'
 
 export default function HelloWorldComponent({ctx}) {
 
+    const surfaceComponent = useRef(null)
     const initialized = useRef(false)
     const [msg, setMsg] = useState('')
-    const toolkit = useRef(null)
-    const surfaceComponent = useRef(null)
+
+    const toolkit = newInstance()
+
 
     const renderParams= {
         layout:{
@@ -42,7 +45,7 @@ export default function HelloWorldComponent({ctx}) {
         },
         events:{
             [EVENT_CANVAS_CLICK]:() => {
-                toolkit.current.clearSelection()
+                toolkit.clearSelection()
             }
         }
     }
@@ -54,7 +57,7 @@ export default function HelloWorldComponent({ctx}) {
                 events:{
                     tap:(p) => {
                         setMsg(`You clicked on node ${p.obj.id}`)
-                        toolkit.current.setSelection(p.obj)
+                        toolkit.setSelection(p.obj)
                     }
                 }
             },
@@ -93,9 +96,7 @@ export default function HelloWorldComponent({ctx}) {
 
             initialized.current = true
 
-            toolkit.current = surfaceComponent.current.getToolkit()
-
-            toolkit.current.load({
+            toolkit.load({
                 data: {
                     nodes: [
                         {id: "1", type: "hello", label: "Hello", left: 50, top: 50},
@@ -116,9 +117,7 @@ export default function HelloWorldComponent({ctx}) {
 
                     <div className="hello-world-message">{msg}</div>
 
-                    <SurfaceComponent renderParams={renderParams} view={view} ref={ surfaceComponent }>
-                        <MiniviewComponent/>
-                    </SurfaceComponent>
+                    <JsPlumbToolkitSurfaceComponent renderParams={renderParams} view={view} ref={ surfaceComponent } toolkit={toolkit}/>
 
                 </div>
             </div>
