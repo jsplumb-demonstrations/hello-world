@@ -11,22 +11,18 @@ import {
 } from "@jsplumbtoolkit/browser-ui"
 
 import {
-    JsPlumbToolkitSurfaceComponent, JsPlumbToolkitMiniviewComponent
+    SurfaceComponent, MiniviewComponent, ControlsComponent
 } from "@jsplumbtoolkit/browser-ui-react";
-
 
 import HelloComponent from './HelloComponent'
 import WorldComponent from './WorldComponent'
 
-
 export default function HelloWorldComponent({ctx}) {
 
-    const surfaceComponent = useRef(null)
     const initialized = useRef(false)
     const [msg, setMsg] = useState('')
 
     const toolkit = newInstance()
-
 
     const renderParams= {
         layout:{
@@ -84,18 +80,20 @@ export default function HelloWorldComponent({ctx}) {
                         }
                     }
                 ],
-                label:"{{label}}"
+                label:"{{label}}",
+                events:{
+                    tap:(p) => {
+                        setMsg(`You clicked on an edge with label "${p.edge.data.label}"`)
+                        toolkit.setSelection(p.obj)
+                    }
+                }
             }
         }
     }
 
-
     useEffect(() => {
-
         if (!initialized.current) {
-
             initialized.current = true
-
             toolkit.load({
                 data: {
                     nodes: [
@@ -107,18 +105,16 @@ export default function HelloWorldComponent({ctx}) {
                     ]
                 }
             })
-
         }
     }, [])
 
-
     return <div style={{width:"100%",height:"100%",display:"flex"}}>
-                <div className="jtk-demo-canvas">
-
-                    <div className="hello-world-message">{msg}</div>
-
-                    <JsPlumbToolkitSurfaceComponent renderParams={renderParams} view={view} ref={ surfaceComponent } toolkit={toolkit}/>
-
-                </div>
+            <div className="jtk-demo-canvas">
+              <div className="hello-world-message">{msg}</div>
+              <SurfaceComponent renderOptions={renderParams} viewOptions={view} toolkit={toolkit}>
+                <MiniviewComponent/>
+                <ControlsComponent/>
+              </SurfaceComponent>
             </div>
+           </div>
 }
