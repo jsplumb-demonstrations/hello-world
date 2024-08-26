@@ -2,8 +2,8 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core'
 import {HelloComponent} from "./hello.component"
 import {WorldComponent} from "./world.component"
 
-import {AbsoluteLayout, AnchorLocations, ArrowOverlay, BlankEndpoint, DEFAULT, Vertex, Surface } from "@jsplumbtoolkit/browser-ui"
-import {BrowserUIAngular, jsPlumbSurfaceComponent} from "@jsplumbtoolkit/browser-ui-angular"
+import {AnchorLocations, ArrowOverlay, BlankEndpoint, DEFAULT, Vertex, Surface } from "@jsplumbtoolkit/browser-ui"
+import {BrowserUIAngular, SurfaceComponent} from "@jsplumbtoolkit/browser-ui-angular"
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import {BrowserUIAngular, jsPlumbSurfaceComponent} from "@jsplumbtoolkit/browser
 })
 export class AppComponent implements AfterViewInit {
 
-  @ViewChild(jsPlumbSurfaceComponent) surfaceComponent!:jsPlumbSurfaceComponent;
+  @ViewChild(SurfaceComponent) surfaceComponent!:SurfaceComponent;
 
   toolkit!:BrowserUIAngular
   surface!:Surface
@@ -49,13 +49,7 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  renderParams = {layout:{
-      // there are several layouts that ship with the toolkit.
-      type:AbsoluteLayout.type,
-      options:{
-        //... if your chosen layout is configurable, options go here
-      }
-    },
+  renderParams = {
     // Allows us to specify edge color (and line width) in each edge's backing data
     simpleEdgeStyles:true,
     // Use a Continuous anchor and a blank endpoint by default.
