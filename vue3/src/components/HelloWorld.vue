@@ -109,12 +109,10 @@
 
     <div id="container">
         <div class="msg">{{msg}}</div>
-    <jsplumb-toolkit ref="toolkitComponent"
-                     surface-id="surfaceId"
+        <SurfaceComponent ref="toolkitComponent"
                      v-bind:render-params="this.renderParams()"
                      v-bind:view="this.view()">
-
-    </jsplumb-toolkit>
+        </SurfaceComponent>
 
     </div>
 
