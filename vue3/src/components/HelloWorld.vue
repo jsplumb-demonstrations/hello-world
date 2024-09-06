@@ -110,8 +110,8 @@
     <div id="container">
         <div class="msg">{{msg}}</div>
         <SurfaceComponent ref="toolkitComponent"
-                     v-bind:render-params="this.renderParams()"
-                     v-bind:view="this.view()">
+                     :renderOptions="this.renderParams()"
+                     :viewOptions="this.view()">
         </SurfaceComponent>
 
     </div>
