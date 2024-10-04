@@ -31,3 +31,9 @@
     color:white;
     font-weight:bold;
 }
+
+.jtk-controls {
+    position:fixed;
+    left:1rem;
+    top:1rem;
+}
