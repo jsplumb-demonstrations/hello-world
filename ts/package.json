@@ -1,6 +1,6 @@
 {
     "name": "hello-world-ts",
-    "version": "7.0.0",
+    "version": "7.0.1",
     "description": "",
     "scripts": {
         "build-es6": "./node_modules/.bin/esbuild app.ts --target=es2016 --bundle --format=iife --outfile=_build/bundle.js",
@@ -20,7 +20,7 @@
     },
     "homepage": "https://github.com/jsplumb-demonstrations/hello-world#readme",
     "dependencies": {
-        "@jsplumbtoolkit/browser-ui": "^7.0.0"
+        "@jsplumbtoolkit/browser-ui": "^7.0.1"
     },
     "devDependencies": {
         "esbuild": "^0.19.5",
