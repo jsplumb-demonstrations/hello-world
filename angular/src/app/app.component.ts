@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core'
 import {HelloComponent} from "./hello.component"
 import {WorldComponent} from "./world.component"
 
-import {AnchorLocations, ArrowOverlay, BlankEndpoint, DEFAULT, Vertex, Surface } from "@jsplumbtoolkit/browser-ui"
+import {ArrowOverlay, Edge, DEFAULT, Vertex, Surface, EVENT_TAP } from "@jsplumbtoolkit/browser-ui"
 import {BrowserUIAngular, SurfaceComponent} from "@jsplumbtoolkit/browser-ui-angular"
 
 @Component({
@@ -20,7 +20,7 @@ export class AppComponent implements AfterViewInit {
     nodes:{
       clickable:{
         events:{
-          tap:(p:{obj:Vertex}) => alert(`You clicked on node ${p.obj.id}`)
+          [EVENT_TAP]:(p:{obj:Vertex}) => alert(`You clicked on node ${p.obj.id}`)
         }
       },
       hello:{
@@ -44,19 +44,16 @@ export class AppComponent implements AfterViewInit {
             }
           }
         ],
-        label:"{{label}}"
+        label:"{{label}}",
+        events:{
+          [EVENT_TAP]:(p:{edge:Edge}) => alert(`You clicked on the edge from ${p.edge.source.id} to ${p.edge.target.id}`)
+        }
       }
     }
   }
 
   renderParams = {
-    // Allows us to specify edge color (and line width) in each edge's backing data
-    simpleEdgeStyles:true,
-    // Use a Continuous anchor and a blank endpoint by default.
-    defaults:{
-      anchor:AnchorLocations.Continuous,
-      endpoint:BlankEndpoint.type
-    }
+
   }
 
   ngAfterViewInit(): void {
