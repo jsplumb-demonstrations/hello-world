@@ -1,6 +1,6 @@
 {
     "name": "hello-world-es6",
-    "version": "7.2.0",
+    "version": "7.3.0",
     "description": "",
     "scripts": {
         "build-es6": "./node_modules/.bin/esbuild app.js --target=es2016 --bundle --format=iife --outfile=_build/bundle.js",
@@ -20,7 +20,7 @@
     },
     "homepage": "https://github.com/jsplumb-demonstrations/hello-world#readme",
     "dependencies": {
-        "@jsplumbtoolkit/browser-ui": "^7.2.0"
+        "@jsplumbtoolkit/browser-ui": "^7.3.0"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
